@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abubakar Bin Farooq</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+  :root{
+    --bg:#0a0c10;
+    --bg-alt:#12151b;
+    --line:#22262f;
+    --text:#eef1f6;
+    --muted:#8b94a3;
+    --accent:#5ce1c4;
+    --accent2:#7c8bff;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{ font-family:'Space Grotesk',sans-serif; }
+
+  ::selection{ background:var(--accent); color:#000; }
+
+  a{ color:inherit; text-decoration:none; }
+
+  .wrap{ max-width:1100px; margin:0 auto; padding:0 32px; }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    backdrop-filter:blur(10px);
+    background:rgba(10,12,16,0.7);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{ display:flex; align-items:center; justify-content:space-between; height:68px; }
+  .logo{ font-weight:700; font-size:18px; letter-spacing:0.5px; }
+  .logo span{ color:var(--accent); }
+  .navlinks{ display:flex; gap:32px; font-size:14px; color:var(--muted); }
+  .navlinks a:hover{ color:var(--text); }
+
+  /* ---------- HERO ---------- */
+  header.hero{
+    min-height:100vh; display:flex; align-items:center;
+    position:relative;
+    padding-top:68px;
+  }
+  .hero-bg{
+    position:absolute; inset:0; overflow:hidden; z-index:0;
+  }
+  .glow{
+    position:absolute; width:600px; height:600px; border-radius:50%;
+    background:radial-gradient(circle, rgba(92,225,196,0.15), transparent 70%);
+    top:-200px; right:-150px;
+  }
+  .glow2{
+    position:absolute; width:500px; height:500px; border-radius:50%;
+    background:radial-gradient(circle, rgba(124,139,255,0.12), transparent 70%);
+    bottom:-150px; left:-100px;
+  }
+  .hero-content{ position:relative; z-index:1; }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:13px; color:var(--accent); letter-spacing:1.5px; text-transform:uppercase;
+    margin-bottom:24px;
+  }
+  .eyebrow::before{
+    content:''; width:8px; height:8px; border-radius:50%; background:var(--accent);
+    box-shadow:0 0 12px var(--accent);
+  }
+  h1.name{
+    font-size:clamp(42px,7vw,86px);
+    font-weight:700;
+    line-height:1.02;
+    letter-spacing:-2px;
+    margin-bottom:20px;
+  }
+  h1.name .accent-word{
+    background:linear-gradient(90deg,var(--accent),var(--accent2));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .hero-desc{
+    max-width:560px; color:var(--muted); font-size:18px; margin-bottom:36px;
+  }
+  .cta-row{ display:flex; gap:16px; flex-wrap:wrap; }
+  .btn{
+    padding:14px 28px; border-radius:8px; font-weight:600; font-size:14px;
+    display:inline-flex; align-items:center; gap:8px; transition:transform .2s, box-shadow .2s;
+  }
+  .btn-primary{ background:var(--accent); color:#06110d; }
+  .btn-primary:hover{ transform:translateY(-2px); box-shadow:0 8px 24px rgba(92,225,196,0.3); }
+  .btn-ghost{ border:1px solid var(--line); color:var(--text); }
+  .btn-ghost:hover{ border-color:var(--accent); color:var(--accent); }
+
+  /* ---------- SECTION LABELS ---------- */
+  .section{ padding:110px 0; border-top:1px solid var(--line); }
+  .section-label{
+    font-size:13px; color:var(--accent); letter-spacing:2px; text-transform:uppercase; margin-bottom:12px;
+    font-weight:600;
+  }
+  .section-title{ font-size:clamp(28px,4vw,42px); font-weight:700; letter-spacing:-1px; margin-bottom:50px; max-width:600px; }
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{ display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start; }
+  .about-text{ color:var(--muted); font-size:16px; }
+  .about-text p{ margin-bottom:18px; }
+  .stat-list{ display:flex; flex-direction:column; gap:0; }
+  .stat-row{
+    display:flex; justify-content:space-between; align-items:baseline;
+    padding:18px 0; border-bottom:1px solid var(--line);
+  }
+  .stat-row:first-child{ border-top:1px solid var(--line); }
+  .stat-label{ color:var(--muted); font-size:14px; }
+  .stat-value{ font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:16px; }
+
+  /* ---------- SKILLS ---------- */
+  .skills-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:1px; background:var(--line); border:1px solid var(--line); }
+  .skill-card{ background:var(--bg); padding:28px; transition:background .2s; }
+  .skill-card:hover{ background:var(--bg-alt); }
+  .skill-card .icon{ font-size:24px; margin-bottom:14px; display:block; }
+  .skill-card h3{ font-size:16px; margin-bottom:8px; }
+  .skill-card p{ font-size:13px; color:var(--muted); }
+
+  /* ---------- PROJECTS ---------- */
+  .project-list{ display:flex; flex-direction:column; }
+  .project{
+    display:grid; grid-template-columns:60px 1fr auto; gap:24px; align-items:center;
+    padding:32px 0; border-bottom:1px solid var(--line);
+    transition:padding-left .25s;
+  }
+  .project:first-child{ border-top:1px solid var(--line); }
+  .project:hover{ padding-left:12px; }
+  .project-num{ font-family:'Space Grotesk',sans-serif; color:var(--muted); font-size:14px; }
+  .project-title{ font-size:22px; font-weight:600; margin-bottom:6px; }
+  .project-desc{ color:var(--muted); font-size:14px; max-width:520px; }
+  .project-tags{ display:flex; gap:8px; margin-top:12px; flex-wrap:wrap; }
+  .tag{ font-size:11px; padding:4px 10px; border:1px solid var(--line); border-radius:20px; color:var(--muted); }
+  .project-link{
+    font-size:14px; color:var(--accent); white-space:nowrap; display:flex; align-items:center; gap:6px;
+  }
+  .project-link:hover{ text-decoration:underline; }
+
+  /* ---------- CONTACT ---------- */
+  .contact-box{
+    background:var(--bg-alt); border:1px solid var(--line); border-radius:16px;
+    padding:64px 48px; text-align:center; position:relative; overflow:hidden;
+  }
+  .contact-box::before{
+    content:''; position:absolute; width:400px; height:400px; border-radius:50%;
+    background:radial-gradient(circle, rgba(92,225,196,0.1), transparent 70%);
+    top:-100px; left:50%; transform:translateX(-50%);
+  }
+  .contact-box h2{ font-size:clamp(26px,4vw,40px); margin-bottom:16px; position:relative; }
+  .contact-box p{ color:var(--muted); margin-bottom:32px; position:relative; }
+  .contact-links{ display:flex; gap:16px; justify-content:center; flex-wrap:wrap; position:relative; }
+
+  footer{ padding:32px 0; text-align:center; color:var(--muted); font-size:13px; border-top:1px solid var(--line); }
+
+  @media(max-width:720px){
+    .about-grid{ grid-template-columns:1fr; }
+    .project{ grid-template-columns:1fr; gap:10px; }
+    .navlinks{ display:none; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ transition:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo">A<span>B</span>F</div>
+    <div class="navlinks">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-bg"><div class="glow"></div><div class="glow2"></div></div>
+  <div class="wrap hero-content">
+    <div class="eyebrow">Available for opportunities</div>
+    <h1 class="name">Abubakar Bin<br>Farooq <span class="accent-word">builds things.</span></h1>
+    <p class="hero-desc">
+      I design and build things for the web — clean interfaces, solid code, and products people actually enjoy using. This is my corner of the internet.
+    </p>
+    <div class="cta-row">
+      <a href="https://thesmiletracker.com" class="btn btn-primary" target="_blank" rel="noopener">View my work →</a>
+      <a href="#contact" class="btn btn-ghost">Get in touch</a>
+    </div>
+  </div>
+</header>
+
+<section class="section" id="about">
+  <div class="wrap">
+    <div class="section-label">About</div>
+    <h2 class="section-title">A little about me</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I'm Abubakar Bin Farooq — replace this paragraph with your real story: where you're from, what got you into your field, and what drives you day to day.</p>
+        <p>Add a second paragraph here about your current focus, the kind of work you enjoy most, or what you're learning right now.</p>
+      </div>
+      <div class="stat-list">
+        <div class="stat-row"><span class="stat-label">Based in</span><span class="stat-value">Your City, Country</span></div>
+        <div class="stat-row"><span class="stat-label">Focus</span><span class="stat-value">Your Specialty</span></div>
+        <div class="stat-row"><span class="stat-label">Experience</span><span class="stat-value">X years</span></div>
+        <div class="stat-row"><span class="stat-label">Currently</span><span class="stat-value">Open to work</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="skills">
+  <div class="wrap">
+    <div class="section-label">Skills</div>
+    <h2 class="section-title">What I work with</h2>
+    <div class="skills-grid">
+      <div class="skill-card"><span class="icon">💻</span><h3>Skill One</h3><p>Short description of this skill or tool.</p></div>
+      <div class="skill-card"><span class="icon">🎨</span><h3>Skill Two</h3><p>Short description of this skill or tool.</p></div>
+      <div class="skill-card"><span class="icon">⚙️</span><h3>Skill Three</h3><p>Short description of this skill or tool.</p></div>
+      <div class="skill-card"><span class="icon">📱</span><h3>Skill Four</h3><p>Short description of this skill or tool.</p></div>
+      <div class="skill-card"><span class="icon">🗄️</span><h3>Skill Five</h3><p>Short description of this skill or tool.</p></div>
+      <div class="skill-card"><span class="icon">🚀</span><h3>Skill Six</h3><p>Short description of this skill or tool.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="projects">
+  <div class="wrap">
+    <div class="section-label">Projects</div>
+    <h2 class="section-title">Things I've built</h2>
+    <div class="project-list">
+      <div class="project">
+        <div class="project-num">01</div>
+        <div>
+          <div class="project-title">Smile Tracker</div>
+          <div class="project-desc">A free AI-powered smile analyzer that scores your smile from 0–100, detects genuine vs. posed smiles, and reads eye engagement — all processed entirely in the browser using Google MediaPipe's 478-point face landmarking. No uploads, no accounts, 100% private.</div>
+          <div class="project-tags"><span class="tag">AI / Computer Vision</span><span class="tag">MediaPipe</span><span class="tag">Client-side ML</span></div>
+        </div>
+        <a href="https://thesmiletracker.com" class="project-link" target="_blank" rel="noopener">View →</a>
+      </div>
+      <div class="project">
+        <div class="project-num">02</div>
+        <div>
+          <div class="project-title">Project Two</div>
+          <div class="project-desc">Replace with a short description of what this project does and the problem it solves.</div>
+          <div class="project-tags"><span class="tag">Tech</span><span class="tag">Tech</span></div>
+        </div>
+        <a href="#" class="project-link">View →</a>
+      </div>
+      <div class="project">
+        <div class="project-num">03</div>
+        <div>
+          <div class="project-title">Project Three</div>
+          <div class="project-desc">Replace with a short description of what this project does and the problem it solves.</div>
+          <div class="project-tags"><span class="tag">Tech</span><span class="tag">Tech</span></div>
+        </div>
+        <a href="#" class="project-link">View →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <div class="wrap">
+    <div class="contact-box">
+      <h2>Let's work together</h2>
+      <p>Have a project in mind or just want to say hi? My inbox is open.</p>
+      <div class="contact-links">
+        <a href="mailto:you@example.com" class="btn btn-primary">Email Me</a>
+        <a href="https://thesmiletracker.com" class="btn btn-ghost" target="_blank" rel="noopener">thesmiletracker.com</a>
+        <a href="#" class="btn btn-ghost">GitHub</a>
+        <a href="#" class="btn btn-ghost">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Abubakar Bin Farooq. Built with care.
+</footer>
+
+</body>
+</html>
